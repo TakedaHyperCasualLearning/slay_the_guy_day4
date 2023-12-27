@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1652900572004384711, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
+      propertyPath: limitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
 --- !u!224 &296769280 stripped
@@ -848,6 +852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1652900572004384711, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
+      propertyPath: limitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
 --- !u!224 &798446661 stripped
@@ -1074,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8927789fdf45459884da5c205ee4cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawCount: 5
+  drawCount: 1
 --- !u!1 &1138386054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 70342685503163955, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
@@ -1321,6 +1329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1652900572004384711, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
+      propertyPath: limitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
 --- !u!224 &1165664335 stripped
@@ -1563,6 +1575,10 @@ PrefabInstance:
     - target: {fileID: 97427650111875267, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
       propertyPath: m_Name
       value: Card (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652900572004384711, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
+      propertyPath: limitTime
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
@@ -1968,6 +1984,7 @@ MonoBehaviour:
   - {fileID: 798446664}
   - {fileID: 1165664338}
   - {fileID: 1610459370}
+  drawEffectLimitTime: 0.5
 --- !u!1 &2104537423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,6 +2175,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6621915958906593523, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
+      propertyPath: angle
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621915958906593523, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
+      propertyPath: endPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621915958906593523, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
+      propertyPath: endPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621915958906593523, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
+      propertyPath: damageTextPrefab
+      value: 
+      objectReference: {fileID: 5692746323142147166, guid: 075660179868f40eca34bd9bf065a2a4, type: 3}
+    - target: {fileID: 6621915958906593523, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
+      propertyPath: positionOffset.x
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4d8c1ca91de949cf819e3e781fb7f8d, type: 3}
 --- !u!1001 &97427648719209635
@@ -2255,6 +2292,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 1652900572004384711, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
+      propertyPath: limitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97bc9ded43a2849538bdc8e81418dd26, type: 3}
 --- !u!1001 &955367929120368679
@@ -2311,6 +2352,26 @@ PrefabInstance:
     - target: {fileID: 955367929087244733, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344096237318119944, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
+      propertyPath: angle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344096237318119944, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
+      propertyPath: endPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344096237318119944, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
+      propertyPath: endPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3344096237318119944, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
+      propertyPath: damageTextPrefab
+      value: 
+      objectReference: {fileID: 5692746323142147166, guid: 075660179868f40eca34bd9bf065a2a4, type: 3}
+    - target: {fileID: 3344096237318119944, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}
+      propertyPath: positionOffset.x
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a8c47aa73e9c4938ab30bd75ec67dcf, type: 3}

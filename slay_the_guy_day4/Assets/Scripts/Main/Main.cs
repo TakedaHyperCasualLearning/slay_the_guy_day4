@@ -10,6 +10,8 @@ public class Main : MonoBehaviour
     [SerializeField] GameObject hands;
 
     private GameEvent gameEvent;
+    private ObjectPool objectPool;
+    private Movement movement;
 
     private DamageSystem damageSystem;
     // カード
@@ -30,13 +32,15 @@ public class Main : MonoBehaviour
     void Start()
     {
         gameEvent = new GameEvent();
+        objectPool = new ObjectPool(gameEvent);
+        movement = new Movement();
 
-        damageSystem = new DamageSystem(gameEvent);
+        damageSystem = new DamageSystem(gameEvent, objectPool, movement);
         // カード
         cardSelectSystem = new CardSelectSystem(gameEvent, player, enemy);
         deckSystem = new DeckSystem(gameEvent);
         drawSystem = new DrawSystem(gameEvent);
-        handsSystem = new HandsSystem(gameEvent, player);
+        handsSystem = new HandsSystem(gameEvent, player, deck.transform);
         // UI
         hitPointUISystem = new HitPointUISystem(gameEvent);
         manaUISystem = new ManaUISystem(gameEvent);

@@ -13,6 +13,8 @@ public class CardBaseComponent : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costPointText = null;
     [SerializeField] private TextMeshProUGUI titleText = null;
     [SerializeField] private TextMeshProUGUI descriptionText = null;
+    private Vector3 basePosition = Vector3.zero;
+    private Quaternion baseRotation = Quaternion.identity;
 
     public int CostPoint { get => costPoint; set => costPoint = value; }
     public int AttackPoint { get => attackPoint; set => attackPoint = value; }
@@ -21,4 +23,6 @@ public class CardBaseComponent : MonoBehaviour
     public TextMeshProUGUI CostPointText { get => costPointText; set => costPointText = value; }
     public TextMeshProUGUI TitleText { get => titleText; set => titleText = value; }
     public TextMeshProUGUI DescriptionText { get => descriptionText; set => descriptionText = value; }
+    public Vector3 BasePosition { get => basePosition; set => basePosition = value; }
+    public Quaternion BaseRotation { get => baseRotation; set => baseRotation = value; }
 }

@@ -9,4 +9,5 @@ public class GameEvent
     public Action<GameObject> RemoveComponentList;
     public Action<GameObject> TurnEnd;
     public Func<List<CardBaseComponent>> Draw;
+    public Action<GameObject> ReleaseObject;
 }
