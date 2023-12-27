@@ -27,11 +27,6 @@ public class ManaUISystem
             ManaUIComponent manaUI = manaUIList[i];
             if (!manaUI.gameObject.activeSelf) continue;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                characterBase.ManaPoint -= 1;
-            }
-
             manaUI.ManaPointText.text = characterBase.ManaPoint.ToString() + "/" + characterBase.ManaPointMax.ToString();
         }
     }

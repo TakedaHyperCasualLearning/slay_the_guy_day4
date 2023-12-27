@@ -27,11 +27,6 @@ public class HitPointUISystem
             HitPointUIComponent hitPointUI = hitPointUIList[i];
             if (!hitPointUI.gameObject.activeSelf) continue;
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                hitPointUI.GetComponent<DamageComponent>().DamagePoint = 1;
-            }
-
             hitPointUI.HitPointText.text = characterBase.HitPoint.ToString() + " / " + characterBase.HitPointMax.ToString();
         }
     }
