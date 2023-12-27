@@ -7,12 +7,14 @@ public class Main : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject card;
+    [SerializeField] GameObject deck;
 
     private GameEvent gameEvent;
 
     private DamageSystem damageSystem;
     // カード
     private CardSelectSystem cardSelectSystem;
+    private DeckSystem deckSystem;
     // UI
     private HitPointUISystem hitPointUISystem;
     private ManaUISystem manaUISystem;
@@ -30,6 +32,7 @@ public class Main : MonoBehaviour
         damageSystem = new DamageSystem(gameEvent);
         // カード
         cardSelectSystem = new CardSelectSystem(gameEvent);
+        deckSystem = new DeckSystem(gameEvent);
         // UI
         hitPointUISystem = new HitPointUISystem(gameEvent);
         manaUISystem = new ManaUISystem(gameEvent);
@@ -43,6 +46,7 @@ public class Main : MonoBehaviour
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemy);
         gameEvent.AddComponentList?.Invoke(card);
+        gameEvent.AddComponentList?.Invoke(deck);
     }
 
     void Update()
@@ -50,6 +54,7 @@ public class Main : MonoBehaviour
         damageSystem.OnUpdate();
         // カード
         cardSelectSystem.OnUpdate();
+        deckSystem.OnUpdate();
         // UI
         hitPointUISystem.OnUpdate();
         manaUISystem.OnUpdate();
