@@ -16,6 +16,12 @@ public class Main : MonoBehaviour
     // UI
     private HitPointUISystem hitPointUISystem;
     private ManaUISystem manaUISystem;
+    private TurnEndButtonSystem turnEndButtonSystem;
+    //　　turn
+    private TurnSystem turnSystem;
+    private StartTurnSystem startTurnSystem;
+    private EnemyAttackSystem enemyAttackSystem;
+    private TurnEndSystem turnEndSystem;
 
     void Start()
     {
@@ -27,6 +33,12 @@ public class Main : MonoBehaviour
         // UI
         hitPointUISystem = new HitPointUISystem(gameEvent);
         manaUISystem = new ManaUISystem(gameEvent);
+        turnEndButtonSystem = new TurnEndButtonSystem(gameEvent);
+        // turn
+        turnSystem = new TurnSystem(gameEvent, player);
+        startTurnSystem = new StartTurnSystem(gameEvent, player);
+        enemyAttackSystem = new EnemyAttackSystem(gameEvent, player);
+        turnEndSystem = new TurnEndSystem(gameEvent);
 
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemy);
@@ -41,5 +53,9 @@ public class Main : MonoBehaviour
         // UI
         hitPointUISystem.OnUpdate();
         manaUISystem.OnUpdate();
+        // turn
+        turnSystem.OnUpdate();
+        startTurnSystem.OnUpdate();
+        enemyAttackSystem.OnUpdate();
     }
 }
