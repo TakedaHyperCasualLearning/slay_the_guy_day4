@@ -5,11 +5,16 @@ using UnityEngine.PlayerLoop;
 
 public class CardSelectSystem
 {
+    private GameObject playerObject;
+    private GameObject enemyObject;
     private List<CardSelectComponent> cardSelectList = new List<CardSelectComponent>();
     private List<CardBaseComponent> cardBaseList = new List<CardBaseComponent>();
+    private int picUpCardIndex = -1;
 
-    public CardSelectSystem(GameEvent gameEvent)
+    public CardSelectSystem(GameEvent gameEvent, GameObject player, GameObject enemy)
     {
+        this.playerObject = player;
+        this.enemyObject = enemy;
         gameEvent.AddComponentList += AddComponentList;
         gameEvent.RemoveComponentList += RemoveComponentList;
     }
@@ -21,29 +26,53 @@ public class CardSelectSystem
 
     public void OnUpdate()
     {
+        List<int> picIndexList = new List<int>();
+
         for (int i = 0; i < cardBaseList.Count; i++)
         {
             CardSelectComponent cardSelect = cardSelectList[i];
             CardBaseComponent cardBase = cardBaseList[i];
             if (!cardSelect.gameObject.activeSelf) continue;
 
-            if (!IsMouseOnCard(cardBase))
-            {
-                cardSelect.GetComponent<RectTransform>().anchoredPosition = cardSelect.BasePosition;
-                continue;
-            }
+            RectTransform rectTransform = cardBase.GetComponent<RectTransform>();
 
-            if (Input.GetMouseButton(0))
+            if (IsMouseOnCard(cardBase))
             {
-                cardSelect.GetComponent<RectTransform>().anchoredPosition = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+                if (!Input.GetMouseButton(0))
+                {
+                    rectTransform.anchoredPosition = cardSelect.BasePosition + cardSelect.PositionOffset;
+                    picIndexList.Add(i);
+                    if (picIndexList.Count >= 2)
+                    {
+                        RectTransform picRectTransform = cardSelectList[picIndexList[0]].GetComponent<RectTransform>();
+                        picRectTransform.anchoredPosition = cardSelectList[picIndexList[0]].BasePosition;
+                    }
+                }
+                else if (picUpCardIndex == -1)
+                {
+                    picUpCardIndex = i;
+                }
             }
             else
             {
-                RectTransform rectTransform = cardBase.GetComponent<RectTransform>();
-                rectTransform.anchoredPosition = cardSelect.BasePosition + cardSelect.PositionOffset;
+                rectTransform.anchoredPosition = cardSelect.BasePosition;
             }
 
+            if (picUpCardIndex != i) continue;
+            rectTransform.anchoredPosition = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            cardSelect.LiftPosition = rectTransform.anchoredPosition;
+
             if (!Input.GetMouseButtonUp(0)) continue;
+            picUpCardIndex = -1;
+
+            if (cardSelect.LiftPosition.y < cardSelect.UseHeight) continue;
+            CharacterBaseComponent characterBase = playerObject.GetComponentInParent<CharacterBaseComponent>();
+
+            if (characterBase.ManaPoint < cardBase.CostPoint) continue;
+            DamageComponent damage = enemyObject.GetComponent<DamageComponent>();
+            damage.DamagePoint = characterBase.AttackPoint * cardBase.AttackPoint;
+            characterBase.ManaPoint -= cardBase.CostPoint;
+            cardSelect.LiftPosition = Vector3.zero;
             cardSelect.gameObject.SetActive(false);
         }
     }
@@ -55,17 +84,17 @@ public class CardSelectSystem
         Vector2 size = rectTransform.sizeDelta * rectTransform.localScale / 2;
         float rad = rectTransform.rotation.z * Mathf.Deg2Rad;
         Vector2 vertex_left_up = new Vector2(
-(-size.x) * Mathf.Cos(rad) + (size.y * -Mathf.Sin(rad)),
-(-size.x) * Mathf.Sin(rad) + (size.y * Mathf.Cos(rad)));
+    (-size.x) * Mathf.Cos(rad) + (size.y * -Mathf.Sin(rad)),
+    (-size.x) * Mathf.Sin(rad) + (size.y * Mathf.Cos(rad)));
         Vector2 vertex_right_up = new Vector2(
-(size.x) * Mathf.Cos(rad) + (size.y * -Mathf.Sin(rad)),
-(size.x) * Mathf.Sin(rad) + (size.y * Mathf.Cos(rad)));
+    (size.x) * Mathf.Cos(rad) + (size.y * -Mathf.Sin(rad)),
+    (size.x) * Mathf.Sin(rad) + (size.y * Mathf.Cos(rad)));
         Vector2 vertex_left_down = new Vector2(
-(-size.x) * Mathf.Cos(rad) + (-size.y * -Mathf.Sin(rad)),
-(-size.x) * Mathf.Sin(rad) + (-size.y * Mathf.Cos(rad)));
+    (-size.x) * Mathf.Cos(rad) + (-size.y * -Mathf.Sin(rad)),
+    (-size.x) * Mathf.Sin(rad) + (-size.y * Mathf.Cos(rad)));
         Vector2 vertex_right_down = new Vector2(
-(size.x) * Mathf.Cos(rad) + (-size.y * -Mathf.Sin(rad)),
-(size.x) * Mathf.Sin(rad) + (-size.y * Mathf.Cos(rad)));
+    (size.x) * Mathf.Cos(rad) + (-size.y * -Mathf.Sin(rad)),
+    (size.x) * Mathf.Sin(rad) + (-size.y * Mathf.Cos(rad)));
 
         vertex_left_up += position;
         vertex_right_up += position;
