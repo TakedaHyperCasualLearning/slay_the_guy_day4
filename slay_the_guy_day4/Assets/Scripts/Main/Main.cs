@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
     private DamageSystem damageSystem;
     // UI
     private HitPointUISystem hitPointUISystem;
+    private ManaUISystem manaUISystem;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class Main : MonoBehaviour
 
         // UI
         hitPointUISystem = new HitPointUISystem(gameEvent);
+        manaUISystem = new ManaUISystem(gameEvent);
 
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemy);
@@ -32,5 +34,6 @@ public class Main : MonoBehaviour
 
         // UI
         hitPointUISystem.OnUpdate();
+        manaUISystem.OnUpdate();
     }
 }
